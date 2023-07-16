@@ -47,15 +47,15 @@ public class ButtonView extends VerticalLayout {
 
         h2ConsoleButton = new Button("H2 Console");
         h2ConsoleButton.addClickListener(e -> {
-            // Открыть веб-браузер с адресом http://localhost:8080/h2-console
+            h2ConsoleButton.getElement().setAttribute("title", "Путь к базе: jdbc:h2:mem:testdb");
             getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('http://localhost:8080/h2-console');"));
         });
 
         backButton = new Button("Назад");
         backButton.addClickListener(e -> {
-            // Открыть веб-браузер с адресом http://localhost:8080
-            getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('http://localhost:8080');"));
+            getUI().ifPresent(ui -> ui.getPage().setLocation("http://localhost:8080"));
         });
+
 
         HorizontalLayout topRightLayout = new HorizontalLayout();
         topRightLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
