@@ -47,12 +47,6 @@ public class MainView extends VerticalLayout {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         add(buttonLayout);
 
-        Button h2ConsoleButton = new Button("H2 консоль");
-        h2ConsoleButton.addClickListener(e -> {
-            getUI().ifPresent(ui -> ui.getPage().setLocation("http://localhost:8080/h2-console"));
-        });
-        buttonLayout.add(h2ConsoleButton);
-
         Button testTaskButton = new Button("Тестовое задание");
         testTaskButton.addClickListener(e -> {
             getUI().ifPresent(ui -> ui.getPage().setLocation("http://localhost:8080/button"));

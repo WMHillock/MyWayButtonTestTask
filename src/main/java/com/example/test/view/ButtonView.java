@@ -46,8 +46,8 @@ public class ButtonView extends VerticalLayout {
         });
 
         h2ConsoleButton = new Button("H2 Console");
+        h2ConsoleButton.setTooltipText("Путь к базе: jdbc:h2:mem:testdb");
         h2ConsoleButton.addClickListener(e -> {
-            h2ConsoleButton.getElement().setAttribute("title", "Путь к базе: jdbc:h2:mem:testdb");
             getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('http://localhost:8080/h2-console');"));
         });
 
