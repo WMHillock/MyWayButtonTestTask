@@ -11,7 +11,7 @@ COPY target/MyWayButtonTestTask-0.0.1-SNAPSHOT.jar /app/app.jar
 WORKDIR /app
 
 # Установка порта
-EXPOSE 8090
+EXPOSE 8080
 
 # Запуск приложения
 CMD java -jar -Dspring.profiles.active=prod app.jar
