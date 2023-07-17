@@ -36,7 +36,6 @@ public class ButtonView extends VerticalLayout {
         setAlignItems(Alignment.CENTER);
 
         createTextField();
-
         createIncreaseButton();
         createH2ConsoleButton();
         createBackButton();

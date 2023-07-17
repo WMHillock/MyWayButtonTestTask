@@ -17,7 +17,13 @@ public class TextFieldValueChangeListener implements HasValue.ValueChangeListene
     @Override
     public void valueChanged(HasValue.ValueChangeEvent<String> event) {
         String fieldValue = event.getValue();
-        int value = Integer.parseInt(fieldValue);
+        int value;
+        try {
+            value = Integer.parseInt(fieldValue);
+        } catch (NumberFormatException exception) {
+            throw new NumberFormatException("Ввели не цифру!");
+        }
+
         binder.setBean(value);
         valueService.setValue(value);
     }
