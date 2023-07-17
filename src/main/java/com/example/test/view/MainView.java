@@ -12,7 +12,7 @@ import com.vaadin.flow.router.Route;
 public class MainView extends VerticalLayout {
     private static final String IMAGE_URL = "https://raw.githubusercontent.com/WMHillock/MyWayButtonTestTask/master/src/main/resources/images/avaForTest.jpg";
     private static final String RESUME_URL = "https://hh.ru/resume/591dc6aaff0aee5f9d0039ed1f6270384f4861";
-    private static final String TEST_BUTTON = "http://localhost:8080/button";
+    private static final String TEST_BUTTON = "/button";
 
     public MainView() {
         Image image = createImage();

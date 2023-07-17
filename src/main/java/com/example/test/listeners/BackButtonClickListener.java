@@ -6,7 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.UI;
 
 public class BackButtonClickListener implements ComponentEventListener<ClickEvent<Button>> {
-    private final String BACK_BUTTON_URL = "http://localhost:8080";
+    private final String BACK_BUTTON_URL = "/";
 
     @Override
     public void onComponentEvent(ClickEvent<Button> event) {

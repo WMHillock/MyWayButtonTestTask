@@ -57,6 +57,7 @@ public class ButtonView extends VerticalLayout {
 
         textField.addValueChangeListener(new TextFieldValueChangeListener(binder, valueService));
 
+        // Загрузка значения из базы данных и установка в TextField
         ValueEntity valueEntity = valueService.getValueEntity();
         if (valueEntity != null) {
             textField.setValue(String.valueOf(valueEntity.getCountedValue()));

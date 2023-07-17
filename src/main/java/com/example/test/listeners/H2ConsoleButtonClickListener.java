@@ -6,7 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.UI;
 
 public class H2ConsoleButtonClickListener implements ComponentEventListener<ClickEvent<Button>> {
-    private final String CONSOLE_URL = "http://localhost:8080/h2-console";
+    private final String CONSOLE_URL = "/h2-console";
 
     @Override
     public void onComponentEvent(ClickEvent<Button> event) {
