@@ -14,8 +14,8 @@ import com.example.test.service.ValueService;
 @CssImport("./styles/custom-styles.css")
 public class ButtonView extends VerticalLayout {
     private Button button;
-    private Button h2ConsoleButton; // Добавленная кнопка
-    private Button backButton; // Добавленная кнопка
+    private Button h2ConsoleButton;
+    private Button backButton;
     private TextField textField;
     private int value = 0;
 
@@ -34,6 +34,20 @@ public class ButtonView extends VerticalLayout {
         textField = new TextField("Значение", String.valueOf(value));
         textField.addClassName("custom-input");
 
+        h2ConsoleButton = new Button("H2 Console");
+        h2ConsoleButton.setTooltipText("Путь к базе: jdbc:h2:mem:testdb");
+        h2ConsoleButton.addClickListener(e -> {
+            getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('http://localhost:8080/h2-console');"));
+        });
+
+        backButton = new Button("Назад");
+        backButton.getStyle().set("position", "absolute");
+        backButton.getStyle().set("top", "0");
+        backButton.getStyle().set("left", "0");
+        backButton.addClickListener(e -> {
+            getUI().ifPresent(ui -> ui.getPage().setLocation("http://localhost:8080"));
+        });
+
         button.addClickListener(e -> {
             value++;
             textField.setValue(String.valueOf(value));
@@ -45,26 +59,6 @@ public class ButtonView extends VerticalLayout {
             valueService.setValue(value);
         });
 
-        h2ConsoleButton = new Button("H2 Console");
-        h2ConsoleButton.setTooltipText("Путь к базе: jdbc:h2:mem:testdb");
-        h2ConsoleButton.addClickListener(e -> {
-            getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('http://localhost:8080/h2-console');"));
-        });
-
-        backButton = new Button("Назад");
-        backButton.addClickListener(e -> {
-            getUI().ifPresent(ui -> ui.getPage().setLocation("http://localhost:8080"));
-        });
-
-
-        HorizontalLayout topRightLayout = new HorizontalLayout();
-        topRightLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
-        topRightLayout.setWidthFull();
-        topRightLayout.getStyle().set("position", "absolute");
-        topRightLayout.getStyle().set("top", "0");
-        topRightLayout.getStyle().set("left", "0");
-        topRightLayout.add(backButton);
-
-        add(topRightLayout, button, textField, h2ConsoleButton);
+        add(backButton, button, textField, h2ConsoleButton);
     }
 }
