@@ -1,13 +1,15 @@
 package com.example.test.service;
 
 import com.example.test.entity.ValueEntity;
+import com.example.test.repository.ValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.test.repository.ValueRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ValueService {
     private final ValueRepository valueRepository;
 
@@ -17,17 +19,15 @@ public class ValueService {
     }
 
     public int getValue() {
-        Optional<ValueEntity> valueEntityOptional = valueRepository.findById(1L);
-        return valueEntityOptional.map(ValueEntity::getCountedValue).orElse(0);
+        return valueRepository.findById(1L)
+                .map(ValueEntity::getCountedValue)
+                .orElse(0);
     }
 
     public void setValue(int value) {
-        Optional<ValueEntity> valueEntityOptional = valueRepository.findById(1L);
-        ValueEntity valueEntity = valueEntityOptional.orElse(new ValueEntity());
+        ValueEntity valueEntity = valueRepository.findById(1L)
+                .orElseGet(ValueEntity::new);
         valueEntity.setCountedValue(value);
         valueRepository.save(valueEntity);
     }
 }
-
-
-
