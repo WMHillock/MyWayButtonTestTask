@@ -35,6 +35,7 @@ public class MainView extends VerticalLayout {
         image.setWidth("auto");
         image.setHeight("55vh");
         image.getStyle().set("margin-right", "1em");
+        image.addClassName("fade-in-image");
         return image;
     }
 
