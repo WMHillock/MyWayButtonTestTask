@@ -1,7 +1,6 @@
 package com.example.test.listeners;
 
 import com.vaadin.flow.component.HasValue;
-import com.vaadin.flow.component.textfield.TextField;
 import com.example.test.service.ValueService;
 import com.vaadin.flow.data.binder.Binder;
 
