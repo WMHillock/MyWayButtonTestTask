@@ -14,9 +14,9 @@ import com.example.test.service.ValueService;
 @CssImport("./styles/custom-styles.css")
 public class ButtonView extends VerticalLayout {
 
-    private final String CONSOLE = "http://localhost:8080/h2-console";
-    private final String BACK_BUTTON = "http://localhost:8080";
-    private final String TOOLTIP_H2 = "Путь к базе: jdbc:h2:mem:testdb";
+    private final String CONSOLE_URL = "http://localhost:8080/h2-console";
+    private final String BACK_BUTTON_URL = "http://localhost:8080";
+    private final String H2_TOOLTIP = "Путь к базе: jdbc:h2:mem:testdb";
 
     private Button button;
     private Button h2ConsoleButton;
@@ -27,7 +27,7 @@ public class ButtonView extends VerticalLayout {
     @Autowired
     private ValueService valueService;
 
-    private Binder<Integer> binder = new Binder<>();
+    private final Binder<Integer> binder = new Binder<>();
 
     public ButtonView() {
         setSizeFull();
@@ -46,9 +46,9 @@ public class ButtonView extends VerticalLayout {
 
     private void createH2ConsoleButton() {
         h2ConsoleButton = new Button("H2 Console");
-        h2ConsoleButton.setTooltipText(TOOLTIP_H2);
+        h2ConsoleButton.setTooltipText(H2_TOOLTIP);
         h2ConsoleButton.addClickListener(e -> {
-            getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('" + CONSOLE + "');"));
+            getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('" + CONSOLE_URL + "');"));
         });
     }
 
@@ -58,7 +58,7 @@ public class ButtonView extends VerticalLayout {
         backButton.getStyle().set("top", "0");
         backButton.getStyle().set("left", "0");
         backButton.addClickListener(e -> {
-            getUI().ifPresent(ui -> ui.getPage().setLocation(BACK_BUTTON));
+            getUI().ifPresent(ui -> ui.getPage().setLocation(BACK_BUTTON_URL));
         });
     }
 
