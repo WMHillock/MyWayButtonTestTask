@@ -12,12 +12,11 @@ import com.vaadin.flow.router.Route;
 public class MainView extends VerticalLayout {
 
     public MainView() {
-        // Создаем изображение
-        String imageUrl = "https://raw.githubusercontent.com/WMHillock/MyWayButtonTestTask/master/src/main/resources/images/jokeava.jpg";
+        String imageUrl = "https://raw.githubusercontent.com/WMHillock/MyWayButtonTestTask/master/src/main/resources/images/avaForTest.jpg";
         Image image = new Image(imageUrl, "Фото отличного Java разработчика");
-        image.setWidth("auto"); // Установите ширину изображения
-        image.setHeight("55vh"); // Автоматический расчет высоты
-        image.getStyle().set("margin-right", "1em"); // Отступ справа для изображения
+        image.setWidth("auto");
+        image.setHeight("55vh");
+        image.getStyle().set("margin-right", "1em");
 
         Div text = new Div();
         String formattedText = "<p>Меня зовут Владимир и я Java Разработчик</p>"
@@ -40,7 +39,7 @@ public class MainView extends VerticalLayout {
         text.getElement().setProperty("innerHTML", formattedText);
 
         HorizontalLayout contentLayout = new HorizontalLayout(image, text);
-        contentLayout.setAlignItems(FlexComponent.Alignment.CENTER); // Выравнивание по вертикали
+        contentLayout.setAlignItems(FlexComponent.Alignment.CENTER);
 
         add(contentLayout);
 
