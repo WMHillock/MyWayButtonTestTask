@@ -41,6 +41,7 @@ public class MainView extends VerticalLayout {
 
     private Div createTextDiv() {
         Div text = new Div();
+        text.addClassName("typing-text");
         String formattedText = "<p>Меня зовут Владимир и я Java Разработчик</p>"
                 + "<p>На текущий момент я работал над проектами:</p>"
                 + "<ul>"
