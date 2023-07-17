@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.test.service.ValueService;
@@ -25,6 +27,8 @@ public class ButtonView extends VerticalLayout {
     @Autowired
     private ValueService valueService;
 
+    private Binder<Integer> binder = new Binder<>();
+
     public ButtonView() {
         setSizeFull();
         setJustifyContentMode(JustifyContentMode.CENTER);
@@ -36,16 +40,8 @@ public class ButtonView extends VerticalLayout {
         createTextField();
 
         add(backButton, button, textField, h2ConsoleButton);
-    }
 
-    private void createIncreaseButton() {
-        button = new Button("Увеличить");
-        button.addClassName("custom-button");
-        button.addClickListener(e -> {
-            value++;
-            textField.setValue(String.valueOf(value));
-            valueService.setValue(value);
-        });
+        binder.setBean(value);
     }
 
     private void createH2ConsoleButton() {
@@ -66,12 +62,28 @@ public class ButtonView extends VerticalLayout {
         });
     }
 
+    private void createIncreaseButton() {
+        button = new Button("Увеличить");
+        button.addClassName("custom-button");
+        button.addClickListener(e -> {
+            value++;
+            binder.setBean(value);
+            valueService.setValue(value);
+        });
+    }
+
     private void createTextField() {
         textField = new TextField("Значение", String.valueOf(value));
         textField.addClassName("custom-input");
-        textField.addValueChangeListener(e -> {
-            value = Integer.parseInt(e.getValue());
-            valueService.setValue(value);
-        });
+
+        binder.forField(textField)
+                .withConverter(new StringToIntegerConverter("Неверное значение"))
+                .bind(bean -> value, (bean, fieldValue) -> {
+                    value = fieldValue;
+                    textField.setValue(String.valueOf(value));
+                    valueService.setValue(value);
+                });
+
+        textField.addValueChangeListener(e -> binder.validate());
     }
 }
