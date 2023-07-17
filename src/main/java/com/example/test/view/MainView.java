@@ -35,11 +35,13 @@ public class MainView extends VerticalLayout {
         image.setWidth("auto");
         image.setHeight("55vh");
         image.getStyle().set("margin-right", "1em");
+        image.addClassName("fade-in-image");
         return image;
     }
 
     private Div createTextDiv() {
         Div text = new Div();
+        text.addClassName("typing-text");
         String formattedText = "<p>Меня зовут Владимир и я Java Разработчик</p>"
                 + "<p>На текущий момент я работал над проектами:</p>"
                 + "<ul>"
