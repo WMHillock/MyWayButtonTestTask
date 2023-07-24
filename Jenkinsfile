@@ -35,7 +35,7 @@ pipeline {
                 script {
                     echo 'Starting Deploy stage'
                     // Шаг запуска контейнера из созданного образа
-                    docker.image('wmhillock/mywaytask-wmhillock:latest').run('-p 9001:8080 -d')
+                    docker.image('wmhillock/mywaytask-wmhillock:latest').run('-d')
                     echo 'Container deployed'
                 }
             }
