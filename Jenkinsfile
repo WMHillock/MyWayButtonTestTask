@@ -7,7 +7,7 @@ pipeline {
                 script {
                     try {
                         echo 'Starting Build stage'
-                        bat 'mvn clean'
+                        bat 'mvn clean -e'
                         echo 'Maven clean completed'
                         bat 'mvn package'
                         echo 'Maven package completed'
