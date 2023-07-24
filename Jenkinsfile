@@ -6,8 +6,11 @@ pipeline {
             steps {
                 script {
                     try {
-                        bat 'mvn clean'
-                        bat 'mvn package'
+                        echo 'Starting Build stage'
+                        sh './mvn clean -e'
+                        echo 'Maven clean completed'
+                        sh './mvn package'
+                        echo 'Maven package completed'
                     } catch (Exception e) {
                         echo "Build failed: ${e.getMessage()}"
                         throw e
@@ -32,7 +35,7 @@ pipeline {
                 script {
                     echo 'Starting Deploy stage'
                     // Шаг запуска контейнера из созданного образа
-                    docker.image('wmhillock/mywaytask-wmhillock:latest').run('-d')
+                    docker.image('wmhillock/mywaytask-wmhillock:latest').run('-p 9001:8080 -d')
                     echo 'Container deployed'
                 }
             }
