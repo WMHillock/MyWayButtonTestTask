@@ -5,11 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    echo 'Starting Build stage'
-                    sh 'mvn clean'
-                    echo 'Maven clean completed'
-                    sh 'mvn package'
-                    echo 'Maven package completed'
+                    def output = sh(returnStdout: true, script: 'set -x; mvn clean package')
+                    echo output
                 }
             }
         }
