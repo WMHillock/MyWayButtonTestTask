@@ -1,5 +1,3 @@
-@Library('docker') _
-
 pipeline {
     agent { docker { image 'maven:latest' } }
 
