@@ -7,7 +7,7 @@ pipeline {
                 script {
                     try {
                         echo 'Starting Build stage'
-                                        // Шаг сборки проекта, например, с помощью Maven
+                        // Шаг сборки проекта, например, с помощью Maven
                         sh 'mvn clean'
                         echo 'Maven clean completed'
                         sh 'mvn package'
@@ -23,8 +23,10 @@ pipeline {
         stage('Dockerize') {
             steps {
                 script {
+                    echo 'Starting Dockerize stage'
                     // Шаг создания Docker-образа из собранного артефакта
                     docker.build('wmhillock/mywaytask-wmhillock:latest', '.')
+                    echo 'Docker image built'
                 }
             }
         }
@@ -32,8 +34,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                    echo 'Starting Deploy stage'
                     // Шаг запуска контейнера из созданного образа
                     docker.image('wmhillock/mywaytask-wmhillock:latest').run('-p 9001:8080 -d')
+                    echo 'Container deployed'
                 }
             }
         }
