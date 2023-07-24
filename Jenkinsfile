@@ -7,10 +7,9 @@ pipeline {
                 script {
                     try {
                         echo 'Starting Build stage'
-                        // Шаг сборки проекта, например, с помощью Maven
-                        sh 'mvn clean'
+                        bat 'mvn clean'
                         echo 'Maven clean completed'
-                        sh 'mvn package'
+                        bat 'mvn package'
                         echo 'Maven package completed'
                     } catch (Exception e) {
                         echo "Build failed: ${e.getMessage()}"
