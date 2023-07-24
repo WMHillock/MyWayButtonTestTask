@@ -5,8 +5,17 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def output = sh(returnStdout: true, script: 'set -x; mvn clean package')
-                    echo output
+                    try {
+                        echo 'Starting Build stage'
+                                        // Шаг сборки проекта, например, с помощью Maven
+                        sh 'mvn clean'
+                        echo 'Maven clean completed'
+                        sh 'mvn package'
+                        echo 'Maven package completed'
+                    } catch (Exception e) {
+                        echo "Build failed: ${e.getMessage()}"
+                        throw e
+                    }
                 }
             }
         }
