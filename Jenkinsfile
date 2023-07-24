@@ -5,12 +5,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                            // Включаем режим отладки для более подробных логов
-                    sh 'set -x'
-
-                            // Шаг сборки проекта, например, с помощью Maven
+                    echo 'Starting Build stage'
                     sh 'mvn clean'
+                    echo 'Maven clean completed'
                     sh 'mvn package'
+                    echo 'Maven package completed'
                 }
             }
         }
