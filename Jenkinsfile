@@ -6,7 +6,8 @@ pipeline {
             steps {
                 script {
                     // Шаг сборки проекта, например, с помощью Maven
-                    sh 'mvn clean package'
+                    sh 'mvn clean'
+                    sh 'mvn package'
                 }
             }
         }
