@@ -6,8 +6,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'mvn clean'
-                        sh 'mvn package'
+                        bat 'mvn clean'
+                        bat 'mvn package'
                     } catch (Exception e) {
                         echo "Build failed: ${e.getMessage()}"
                         throw e
