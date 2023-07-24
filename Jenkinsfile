@@ -1,28 +1,31 @@
 pipeline {
-    agent { docker { image 'maven:latest' } }
+    agent any
 
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'mvn test'
+                script {
+                    // Шаг сборки проекта, например, с помощью Maven
+                    sh 'mvn clean package'
+                }
             }
         }
 
         stage('Dockerize') {
             steps {
-                docker.build('wmhillock/mywaytask-wmhillock:latest', '.')
+                script {
+                    // Шаг создания Docker-образа из собранного артефакта
+                    docker.build('wmhillock/mywaytask-wmhillock:latest', '.')
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker run -p 9001:8080 wmhillock/mywaytask-wmhillock:latest'
+                script {
+                    // Шаг запуска контейнера из созданного образа
+                    docker.image('wmhillock/mywaytask-wmhillock:latest').run('-p 9001:8080 -d')
+                }
             }
         }
     }
