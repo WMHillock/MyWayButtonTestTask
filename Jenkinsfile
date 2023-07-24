@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        bat 'cd C:\apache-maven-3.9.3\bin'
+                        bat 'cd C:\\apache-maven-3.9.3\\bin'
                         bat 'mvn clean'
                         bat 'mvn package'
                     } catch (Exception e) {
