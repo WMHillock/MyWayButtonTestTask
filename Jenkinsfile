@@ -10,13 +10,31 @@ pipeline {
                     def imageName = 'wmhillock/mywaytask-wmhillock:latest'
 
                     echo "Stopping container: ${containerName}"
-                    bat "docker container stop ${containerName}"
+                    script {
+                        try {
+                            bat "docker container stop ${containerName}"
+                        } catch (Exception e) {
+                            echo "Container ${containerName} is not running or does not exist."
+                        }
+                    }
 
                     echo "Removing container: ${containerName}"
-                    bat "docker rm ${containerName}"
+                    script {
+                        try {
+                            bat "docker rm ${containerName}"
+                        } catch (Exception e) {
+                            echo "Container ${containerName} does not exist."
+                        }
+                    }
 
                     echo "Removing image: ${imageName}"
-                    bat "docker rmi ${imageName}"
+                    script {
+                        try {
+                            bat "docker rmi ${imageName}"
+                        } catch (Exception e) {
+                            echo "Image ${imageName} does not exist."
+                        }
+                    }
                 }
             }
         }
