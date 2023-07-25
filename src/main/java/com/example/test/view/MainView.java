@@ -51,7 +51,7 @@ public class MainView extends VerticalLayout {
                 + "<li>Фреймворки - Spring, Hibernate, Thymeleaf</li>"
                 + "<li>Базы данных: PostgreSQL, Cassandra, H2, Redis</li>"
                 + "<li>Брокеры сообщений: RabbitMQ, Kafka</li>"
-                + "<li>Другие системы: Keycloack, Docker, Hazelcast</li>"
+                + "<li>Другие системы: Keycloack, Docker, Hazelcast, Jenkins</li>"
                 + "</ul>"
                 + "<p>Давно работаю с Java и продолжаю развиваться в данном направлении, уверен,"
                 + "что могу быть полезным в любом проекте.</p>"
