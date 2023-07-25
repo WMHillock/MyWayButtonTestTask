@@ -1,3 +1,4 @@
+//Pipline для работы с Jenkins
 pipeline {
     agent any
 
