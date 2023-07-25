@@ -10,7 +10,7 @@ pipeline {
                     def imageName = 'wmhillock/mywaytask-wmhillock:latest'
 
                     echo "Stopping container: ${containerName}"
-                    bat "docker stop ${containerName}"
+                    bat "docker container stop ${containerName}"
 
                     echo "Removing container: ${containerName}"
                     bat "docker rm ${containerName}"
