@@ -6,14 +6,11 @@ pipeline {
         stage('Preparation') {
             steps {
                 script {
-                    def containerName = 'my-container' // Здесь задайте имя контейнера, который нужно остановить и удалить
-                    def imageName = 'wmhillock/mywaytask-wmhillock:latest' // Здесь задайте имя образа, который нужно удалить
+                    def containerName = 'my-container'
+                    def imageName = 'wmhillock/mywaytask-wmhillock:latest'
 
                     echo "Stopping container: ${containerName}"
                     bat "docker stop ${containerName}"
-
-                    echo "Stopping image: ${imageName}"
-                    bat "docker stop ${imageName}"
 
                     echo "Removing container: ${containerName}"
                     bat "docker rm ${containerName}"
@@ -55,11 +52,11 @@ pipeline {
             steps {
                 script {
                     def containerName = 'my-container'
-                    cho "Starting Deploy stage for container: ${containerName}"
-                    docker.image('wmhillock/mywaytask-wmhillock:latest').run("--name ${containerName} -p 9001:8080 -d")
+                    echo "Starting Deploy stage for container: ${containerName}"
+                    docker.image('wmhillock/mywaytask-wmhillock:latest').run("-p 9001:8080 --name ${containerName} -d")
                     echo "Container '${containerName}' deployed"
-                        }
-                    }
                 }
+            }
+        }
     }
 }
