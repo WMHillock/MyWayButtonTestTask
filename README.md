@@ -70,6 +70,7 @@
 
 ### Jenkins:
 * Проект подключен к Pipeline: Github -> Jenkins -> Docker
+* Работает
 
 [Наверх](#mywaytask)
 
